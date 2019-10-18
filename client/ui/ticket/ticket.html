@@ -2,9 +2,12 @@
 <template name="ticket_page">
 	<section class="row">
 		<div class="col-6">
-		{{#if openTicket ticket.open}}
-		{{> correction_form}}
+		{{#if different ticket.ownerId currentUser._id}}
+			{{#if openTicket ticket.open}}
+				{{> correction_form}}
+			{{/if}}
 		{{/if}}
+
 		{{> correction_accepted_list}}
 		</div>
 		
@@ -26,12 +29,12 @@
 				
 				
 				{{#if equals ticket.ownerId currentUser._id}}
-					<a href="/ticket/{{ticket._id}}/edit" class="btn btn-primary btn-sm mb-3">Modifier</a>
+					<a href="/ticket/{{ticket._id}}/edit" class="btn btn-primary btn-sm py-2 px-4 btn-style">Modifier</a>
 					
 				{{#if openTicket ticket.open}}
-					<button class="btn btn-danger btn-sm mb-3 js-closed-ticket">Fermer</button>
+					<button class="btn btn-danger btn-sm js-closed-ticket py-2 px-4 btn-style">Fermer</button>
 				{{else}}
-					<button class="btn btn-success btn-sm mb-3 js-closed-ticket">Rouvrir</button>
+					<button class="btn btn-success btn-sm js-closed-ticket py-2 px-4 btn-style">Rouvrir</button>
 				{{/if}}{{/if}}
 				
 			</div>
@@ -42,38 +45,33 @@
 
 <!-- TICKET_PROPOSITION -->
 <template name="ticket_proposition">
-	<article class="card my-2">
-		<button type="submit" class="btn-proposition-ticket btn btn-outline-info">Ouvrir un ticket pour corriger du texte</button>
-	</article>
+	
+		<button type="submit" class="btn-proposition-ticket btn btn-block btn-outline-info btn-style">Ouvrir un ticket pour corriger du texte</button>
+	
 </template>
 
 <!-- TICKET_CREATE_FORM -->
 <template name="ticket_create_form">
-	<article class="card my-2">
-		<h5 class="card-header">Cration d'un ticket</h5>
-		
-		<div class="card-body">
+	<article class="my-2">
 		
 		<form class="create-ticket js-create-ticket">
 			
 			<input class="form-control" type="text" placeholder="Titre du contenu à corriger" name="title">
-			<textarea class="form-control mb-2" name="content" rows="20" placeholder="Texte à corriger"></textarea>
+			<textarea class="form-control mb-2" name="content" rows="10" placeholder="Texte à corriger"></textarea>
 			
 			<div class="my-1">
-				<button type="button" class="btn-cancel btn btn-light">Annuler</button>
-				<button type="submit" class="btn-create-ticket btn btn-success">Envoyer le ticket</button>
+				<button type="button" class="btn-cancel btn btn-outline-danger px-4 btn-style">Annuler</button>
+				<button type="submit" class="btn-create-ticket btn btn-success px-4 btn-style">Envoyer le ticket</button>
 			</div>
 		</form>
-		</div>
+		
 	</article>
 </template>
 
 <!-- TICKET_EDIT_FORM -->
 <template name="ticket_edit_form">
-	<article class="card my-2">
-		<h5 class="card-header">Modifier un ticket</h5>
-		
-		<div class="card-body">
+	<article class="my-2">
+		<h5>Modifier le ticket</h5>
 		
 		<form class="edit-ticket js-edit-ticket">
 			
@@ -81,11 +79,11 @@
 			<textarea class="form-control mb-2" name="content" rows="20" placeholder="Texte à corriger">{{ticket.content}}</textarea>
 			
 			<div class="my-1">
-				<a href="/ticket/{{ticket._id}}" class="btn-cancel btn btn-light">Annuler</a>
-				<button type="submit" class="js-edit-ticket btn btn-success">Modifier le ticket</button>
+				<a href="/ticket/{{ticket._id}}" class="btn-cancel btn btn-outline-danger px-4 btn-style">Annuler</a>
+				<button type="submit" class="js-edit-ticket btn btn-success px-4 btn-style">Modifier le ticket</button>
 			</div>
 		</form>
-		</div>
+		
 	</article>
 </template>
 
@@ -111,7 +109,7 @@
 			
 		</div>
 		<aside class="card-body col-sm-5 col-lg-4 d-flex flex-column justify-content-around ">
-			<a href="/ticket/{{this._id}}" class="btn btn-primary btn-sm ">Afficher le ticket</a>
+			<a href="/ticket/{{this._id}}" class="btn btn-outline-primary btn-sm p-2 btn-style">Afficher le ticket</a>
 			<div class="contributors  mx-auto">
 				<span class="small">{{> contributeurs}}</span>
 			</div>

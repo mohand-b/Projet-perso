@@ -8,20 +8,20 @@
 			<p class="usernameProfil">{{profilInfos.username}}</p>
 			
 			
-			<p class="rankProfil">{{titleRank profilInfos.rank}}</p>
+			<p class="rankProfil itemProfil">{{titleRank profilInfos.rank}}</p>
 			
-			<p class="contributionsProfil">{{countContributions}} contribution{{superieur countContributions}}</p>
+			<p class="contributionsProfil itemProfil">{{countContributions}} contribution{{superieur countContributions}}</p>
 			
-			<p class="scoreProfil">Score : {{profilInfos.score}}</p>
+			<p class="scoreProfil itemProfil">Score : {{profilInfos.score}}</p>
 			
 			{{#if currentUserProfil}}
-				<a href="/mycontributions" class="btn btn-primary btn-sm ">Afficher mes contributions</a>
+				<a href="/mycontributions" class="btn btn-primary btn-sm btn-style py-2 px-4">Afficher mes contributions</a>
 			{{/if}}
 			
 		</div>
 		
 		<div class="col-md-8 col-sm-12">
-			<h4 class="mb-4">Derniers tickets</h4>
+			<h2 class="mb-4">Derniers tickets</h2>
 		
 			<article>
 				{{#each ticket in lastTickets}}

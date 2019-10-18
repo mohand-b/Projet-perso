@@ -1,11 +1,10 @@
 <template name="ladder">
-	<h2 class="py-4"><i class="fa fa-trophy" aria-hidden="true"></i> Classement</h2>
 		<article>
 			
 			<table class="table ladder-table">
 				<thead>
-					<tr>
-						<th scope="col">#</th>
+					<tr class="small font-weight-bold text-muted">
+						<th scope="col"></th>
 						<th scope="col">Pseudo</th>
 						<th scope="col">Score</th>
 						<th scope="col">Rang</th>
@@ -20,6 +19,13 @@
 			</table>	
 			
 		</article>
+</template>
+
+<template name="ladderPage">
+	<h2 class="mb-4"><i class="fa fa-trophy mr-3" aria-hidden="true"></i> Classement</h2>
+	
+	{{> ladder}}
+
 </template>
 
 

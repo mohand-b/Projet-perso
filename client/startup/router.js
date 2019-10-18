@@ -40,7 +40,7 @@ FlowRouter.route('/profil/:userId', {
 // Page du classement
 FlowRouter.route('/ladder', {
 	action() {
-		BlazeLayout.render('layout', { main: 'ladder'})
+		BlazeLayout.render('layout', { main: 'ladderPage'})
 	}
 })
 

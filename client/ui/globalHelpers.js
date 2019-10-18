@@ -45,6 +45,11 @@ Template.registerHelper('equals', function (a, b) {
 	return a === b 
 })
 
+Template.registerHelper('different', function (a, b) {
+	return a != b 
+})
+
+
 Template.registerHelper('superieur', function (a) {
 	
 	let b = 1

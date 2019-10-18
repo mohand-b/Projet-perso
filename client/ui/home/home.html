@@ -1,11 +1,14 @@
 <template name="home">
-	{{> home_description}}
+	<aside class="row">
+	<div class="col-7">{{> home_description}}</div>
+	<div class="col-5">{{> carousel}}</div>
+	</aside>
 	
 	{{#if currentUser}}
 	{{> Template.dynamic template=ticket_creation}}
 	{{/if}}
 	
-	<main class="row">
+	<main class="row mt-4">
 		<div class="col-7">{{> ticket_list}}</div>
 		<div class="col-5">{{> ladder}}</div>
 	</main>
@@ -17,4 +20,8 @@
 		
 		<p>xxx est un site de collaboration participatif où les utilisateurs auront la possibilité de partager du texte pour qu’il puisse être examiné et corrigé par d’autres utilisateurs du site.</p>
 	</article>
+</template>
+
+<template name="carousel">
+
 </template>

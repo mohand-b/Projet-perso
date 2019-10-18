@@ -1,5 +1,5 @@
 <template name="contributions">
-	<h2 class="py-4">Mes contributions</h2>
+	<h2 class="mb-4">Mes contributions</h2>
 	
 	<div class="containerContributions row">
 		<article class="col-4">
@@ -37,7 +37,7 @@
 			<p class="mb-1">{{attachedTicket this._id}}</p>
 			<p class="card-text-date">{{getDisplayDateTime this.createdAt}}</p>
 			<a href="/ticket/{{this.ticketId}}" 
-			   class="btn 
+			   class="btn btn-style py-2 px-4 btn-sm
 		{{#if statusAccepted this.status}}btn-outline-success
 					  {{else}}
 		{{#if statusPending this.status}}btn-outline-primary

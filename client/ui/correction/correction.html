@@ -4,10 +4,10 @@
 		<div class="mb-5">
 			<form class="js-create-correction create-correction">
 				
-				<label>Proposer une correction</label>
+				<label class="font-weight-bold text-muted mb-3">Proposer une correction</label>
 				<div>
 					<textarea type="text" class="form-control mb-2" placeholder="Correction" name="content">{{ticket.content}}</textarea>
-					<button class="btn btn-success">Envoyer</button>
+					<button class="btn btn-success btn-style py-2 px-4">Envoyer</button>
 				</div>
 				
 			</form>
@@ -36,7 +36,7 @@
 
 <!-- CORRECTION SINGLE -->
 <template name="correction_single">
-	<div class="card my-2">
+	<div class="card mb-3">
 		<div class="card-body post-item" data-id="{{_id}}">
 			<p class="{{#if statusAccepted this.status}}status-accepted{{/if}} 
 					  {{#if statusRefused this.status}}status-refused{{/if}}">{{this.status}}</p>
@@ -50,8 +50,8 @@
 			
 			{{#if statusPending this.status}}{{#if whoCanAppreciate}}
 			
-				<button class="js-accept-correction btn btn-outline-success">Accepter</button>
-				<button class="js-refuse-correction btn btn-outline-danger">Refuser</button>
+				<button class="js-accept-correction btn btn-outline-success btn-style">Accepter</button>
+				<button class="js-refuse-correction btn btn-outline-danger btn-style">Refuser</button>
 			{{/if}}{{/if}}
 		</div>
 	</div>
