@@ -17,6 +17,9 @@ export const ticketUpsertSchema = new SimpleSchema({
 		min: 3,
 		max: 15000
 	},
+	private: {
+		type: Boolean	
+	},
 	id: {
 		type: String,
 		optional: true

@@ -72,8 +72,8 @@ ul {display: block; margin-block-start: 0; margin-block-end: 0; margin-bottom: 3
    |_| |_|\___|_|\_\___|\__|___/*/
                                 
 .create-ticket {display: flex; flex-direction: column;}
-.create-ticket input, .create-ticket textarea {margin: 5px; padding: 10px; max-width: 95%; min-width: 95%;}
-
+.create-ticket input[type=text], .create-ticket textarea {margin: 5px; padding: 10px; max-width: 95%; min-width: 95%;}
+.create-ticket .form-check {margin: 5px 0; padding-left: 5px}
 .row {padding: 0}
 
 /* Design d'un ticket 
@@ -92,6 +92,7 @@ ______________________________________________________*/
 .status-accepted {color: rgba(36,189,53,1.00)}
 .status-refused {color: red}
 
+.badgesTicket img {height: 15px; padding: 0 10px}
 
 
  /*____                         _   _                 

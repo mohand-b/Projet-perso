@@ -16,6 +16,7 @@ Meteor.methods({
 		let ticketDoc = {
 			title: ticket.title,
 			content: ticket.content,
+			private: ticket.private,
 			createdAt: new Date(),
 			ownerId: this.userId,
 			open: true,

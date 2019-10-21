@@ -12,11 +12,17 @@
 		</div>
 		
 	<div class="col-6">
-		<div class="card">
+		<div class="card {{#if closedTicket ticket.open}}ticket-closed{{/if}}" >
 			<div class="card-body">
-		
+				
+				
+				
 				<div class="headerCard d-flex justify-content-between">
 					<p class="card-text-author">{{getUserFullname  ticket.ownerId}}</p>
+					<div class="badgesTicket">
+						{{#if equals ticket.ownerId currentUser._id}}<img src="/img/medal.svg" data-toggle="tooltip" data-placement="top" title="Propriétaire de ce ticket">{{/if}}
+						{{#if closedTicket ticket.open}}<img src="/img/lock.svg" data-toggle="tooltip" data-placement="top" title="Ticket fermé">{{/if}}
+					</div>
 					<p class="card-text-date">{{getDisplayDateTime ticket.createdAt}}</p>					
 				</div>
 				
@@ -58,6 +64,10 @@
 			
 			<input class="form-control" type="text" placeholder="Titre du contenu à corriger" name="title">
 			<textarea class="form-control mb-2" name="content" rows="10" placeholder="Texte à corriger"></textarea>
+			<div class="form-check">
+			<input class="mr-2" type="checkbox" id="defaultCheck1" name="private">
+			<label class="form-check-label text-muted" for="defaultCheck1">Rendre privé </label>
+			</div>
 			
 			<div class="my-1">
 				<button type="button" class="btn-cancel btn btn-outline-danger px-4 btn-style">Annuler</button>
@@ -110,6 +120,11 @@
 		</div>
 		<aside class="card-body col-sm-5 col-lg-4 d-flex flex-column justify-content-around ">
 			<a href="/ticket/{{this._id}}" class="btn btn-outline-primary btn-sm p-2 btn-style">Afficher le ticket</a>
+			<div class="badgesTicket text-center">
+						{{#if equals this.ownerId currentUser._id}}<img src="/img/award.svg" data-toggle="tooltip" data-placement="top" title="Propriétaire de ce ticket">{{/if}}
+						{{#if recentTicket this.createdAt}}<img src="/img/hourglass.svg" data-toggle="tooltip" data-placement="top" title="Ticket récemment créé">{{/if}}
+						{{#if closedTicket this.open}}<img src="/img/lock.svg" data-toggle="tooltip" data-placement="top" title="Ticket fermé">{{/if}}
+					</div>
 			<div class="contributors  mx-auto">
 				<span class="small">{{> contributeurs}}</span>
 			</div>

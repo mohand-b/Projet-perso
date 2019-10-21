@@ -20,9 +20,10 @@ Template.ticket_create_form.events({
 		
 		const title = event.target.title.value;
 		const content = event.target.content.value;
+		const private = event.target.private.checked;
 		
 		// Appel de la méthode créée pour la création d'un ticket
-		Meteor.call('insertTicket', {title: title, content: content},
+		Meteor.call('insertTicket', {title: title, content: content, private: private},
 				   (err, res) => {
 			if(!err) {
 				event.target.title.value = '';
@@ -54,7 +55,6 @@ Template.ticket_edit_form.events({
 	}
 })
 
-
 // Évènements liés au template "ticket_page"
 Template.ticket_page.events({
 	'click .js-closed-ticket'(event, instance){
@@ -65,8 +65,6 @@ Template.ticket_page.events({
 		})		
 	}
 })
-
-
 
 
 // ----------- SUBSCRIBE
@@ -98,6 +96,9 @@ Template.ticket_page.helpers({
 	},
 	openTicket(statusTicket) {
 	return statusTicket === true
+	},
+	closedTicket(statusTicket) {
+	return statusTicket === false
 	}
 })
 
@@ -128,5 +129,25 @@ Template.contributeurs.helpers({
 Template.ticket_single.helpers({
 	closedTicket(statusTicket) {
 	return statusTicket === false
+	},
+	recentTicket(createdAt) {
+		
+		let diff = {}
+		let today = new Date()
+		let tmp = createdAt - today
+		
+		tmp = Math.floor(tmp/1000);             // Nombre de secondes entre les 2 dates
+		diff.sec = tmp % 60;                    // Extraction du nombre de secondes
+ 
+		tmp = Math.floor((tmp-diff.sec)/60);    // Nombre de minutes (partie entière)
+		diff.min = tmp % 60;                    // Extraction du nombre de minutes
+ 
+		tmp = Math.floor((tmp-diff.min)/60);    // Nombre d'heures (entières)
+		diff.hour = tmp % 24;                   // Extraction du nombre d'heures
+     
+		tmp = Math.floor((tmp-diff.hour)/24);   // Nombre de jours restants
+		diff.day = tmp;
+     
+    if(diff.day > -1) return true;
 	}
 })
