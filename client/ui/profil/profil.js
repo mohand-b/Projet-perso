@@ -4,12 +4,18 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import './profil.html'
 
 
+// ----------- EVENTS
+
+Template.profil.events({
+	'click .logout-js'(event, instance) {
+		Meteor.logout()
+		FlowRouter.go('/')
+	},
+})
+
 
 // ----------- SUBSCRIBE
 
-Template.myprofil.onCreated(function() {
-	this.subscribe('profil', Meteor.userId())
-})
 
 Template.profil.onCreated(function() {
 	this.subscribe('profil', FlowRouter.getParam('userId'))

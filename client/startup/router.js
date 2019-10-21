@@ -51,6 +51,12 @@ FlowRouter.route('/mycontributions', {
 	}
 })
 
+// Page de la foire aux questions
+FlowRouter.route('/faq', {
+	action() {
+		BlazeLayout.render('layout', { main: 'faq'})
+	}
+})
 
 
 

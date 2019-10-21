@@ -6,6 +6,10 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 // ----------- EVENTS
 
 Template.navbar.events({
+	'click .home-js'(event, instance)
+	{
+		FlowRouter.go('/')
+	},
 	'click .current_user'(event, instance)
 	{
 		FlowRouter.go('/profil/:id', {id:Meteor.userId()})
@@ -19,6 +23,10 @@ Template.navbar.events({
 	'click .contributions-js'(event, instance)
 	{
 		FlowRouter.go('/mycontributions')	
+	},
+	'click .faq-js'(event, instance)
+	{
+		FlowRouter.go('/faq')	
 	},
 	'click .js-open-login-modal'(event, instance) {
 		Modal.show('login')
@@ -39,4 +47,7 @@ Template.login.onCreated(function() {
 		
 	})
 });
+
+// ----------- SUSCRIBE
+
 

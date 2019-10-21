@@ -9,8 +9,15 @@
 	{{/if}}
 	
 	<main class="row mt-4">
-		<div class="col-7">{{> ticket_list}}</div>
-		<div class="col-5">{{> ladder}}</div>
+		<div class="col-7">
+			<p class="text-muted mb-4 title-home">Derniers tickets publics</p>
+			{{> ticket_list}}
+		</div>
+		
+		<div class="col-5">
+			<p class="text-muted mb-4 title-home">Classement des utilisateurs</p>
+			{{> ladder}}
+		</div>
 	</main>
 </template>
 

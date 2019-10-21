@@ -5,16 +5,18 @@
   \____|\___|_| |_|\___|_|  \__,_|_|*/
                                     
 
-body {font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif"; background-image: url("https://sendeyo.com/up/d/a388bcd14e"); background-repeat: repeat; font-size: 1rem}
+body {font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif"; background-image:url("/img/Background.svg"); background-repeat: no-repeat; background-size:cover; font-size: 1rem}
 /*header {background-color: pink; border: 2px solid purple}*/
 
 main {padding: 0 5%}
 
 
-.headerTitle {background-image:url("https://wallpaperaccess.com/full/497086.jpg"); background-size: cover; background-position: 50%; height: 100px; display: flex; flex-direction: column; justify-content: center; border-bottom: 2px solid black}
+.headerTitle {background-image:url("/img/pen.jpg"); background-repeat: repeat; background-size: contain; background-position: 50%; height: 100px; display: flex; flex-direction: column; justify-content: center; border-bottom: 2px solid rgba(0,0,0,0.1);}
 h1 {margin: 0; color: white}
 h1 a {color: white; background-color: rgba(0,0,0,0.23); padding: 30px;}
-H2 {font-size: 1.5rem}
+h2 {font-size: 1.5rem}
+
+.title-home:before {content: "—    "}
 
 .userLink {color: black}
 .userLink:hover {text-decoration: none}
@@ -28,13 +30,20 @@ H2 {font-size: 1.5rem}
  |_| \_|\__,_| \_/ |_|\__, |\__,_|\__|_|\___/|_| |_|
                       |___/      					*/
 
-nav ul li:last-child {text-align: -webkit-right; padding-inline-end: 50px;}
+/*nav ul li:last-child {text-align: -webkit-right; padding-inline-end: 50px;}*/
 
-nav ul {display: flex; margin-bottom: 10vh}
-nav .col {text-align: center; background-color: rgba(255,255,255,1); line-height: 100px; border-bottom: 2px solid rgba(0,0,0,0.1); transition: 1s ease;}
+nav ul {display: flex; margin-bottom: 60px; background-color: rgba(255,255,255,1)}
+nav ul li {text-align: center; background-color: rgba(255,255,255,1); line-height: 60px; border-bottom: 2px solid rgba(0,0,0,0.1); display:flex; flex-direction: column; justify-content: center; cursor: pointer}
 
-nav .col:hover {background-color: rgba(255,255,255,1)}
-nav ul li:last-child .col:hover {background-color: rgba(255,255,255,1)}
+nav ul li:last-child {display: block}
+
+nav ul li:hover {background-color: rgba(154,226,255,0.10)}
+nav ul li:last-child {background-color: rgba(255,255,255,1)}
+
+i.fa.fa-home, i.fa.fa-user {font-size: 2rem}
+i.fa.fa-plus {font-size: 1.2rem}
+i.fa.fa-user {padding:10px}
+
 
 /* Normalize */
 ul {display: block; margin-block-start: 0; margin-block-end: 0; margin-bottom: 3vh}

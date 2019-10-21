@@ -1,43 +1,46 @@
 <template name="navbar">
 	
-	<nav>
-		<ul>
-		{{#if currentUser}}
-			
-			<li class="current_user col">
-				 {{currentUser.username}}
-			</li>
-			
-			
-			
-			<!--<li class="col mytickets-js"> Mes tickets</li>-->
-			<li class="col contributions-js">Mes contributions</li>
-			
-		{{/if}}
-			
-			<li class="col ladder-js">Classement</li>
-			
-			{{#unless logginIn}}
-			{{#if currentUser}}
-			<li class="col"><button class="btn btn-outline-secondary logout-js p-2">Déconnexion</button></li>
-			{{else}}
-			<li class="col"><button class="btn btn-success login-button js-open-login-modal p-2">Connexion</button></li>
-			{{/if}}
-			{{/unless}}
-			
-		</ul>
-	</nav>
+  <nav>
+    <ul class="row align-self-center text-center">
+		
+      <li class="col-1 home-js bg-primary text-white"><i class="fa fa-home"></i></li>
+		
+      <li class="col-5 ladder-js text-muted font-weight-bold">Classement</li>
+		
+      <li class="col-4 faq-js text-muted font-weight-bold">FAQ</li>
+		
+      <li class="col-2 bg-info text-white {{#if currentUser}}current_user{{else}}js-open-login-modal{{/if}}">
+		  <i class="fa fa-user"></i> 
+		  {{#if currentUser}} 
+		  	<span class="font-weight-bold">{{currentUser.username}}</span> 
+		  {{/if}}
+		  
+        {{#unless logginIn}}
+		  
+        	{{#if currentUser}}
+        		
+        	{{else}}
+        		Connexion
+       		{{/if}}
+		  
+        {{/unless}}</li>
+		
+    </ul>
+  </nav>
 	
 </template>
 
-<template name="login">
 
-	<div class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				{{> atForm}}
-			</div>
-		</div>
-	</div>
+<template name="login">
+	
+  <div class="modal fade">
+	  
+    <div class="modal-dialog">
+		
+      <div class="modal-content"> {{> atForm}} </div>
+		
+    </div>
+	  
+  </div>
 	
 </template>

@@ -6,6 +6,8 @@ import '../ladder/ladder'
 import '../profil/profil'
 import '../contributions/contributions'
 import '../correction/correction'
+import '../faq/faq'
 
 
 import './layout.html';
+
