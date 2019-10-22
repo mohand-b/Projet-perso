@@ -5,12 +5,7 @@ import './ticket.html';
 
 Meteor.startup(function () {
   Session.setDefault('mycheckbox', 0);
-});
-Tracker.autorun(function () {
-    var sessionmycheckbox = Session.get('mycheckbox');
-    console.log("tracker autorun : sessionmycheckbox : "+sessionmycheckbox);
-});
-
+})
 
 // ----------- EVENTS
 
@@ -96,6 +91,7 @@ Template.ticket_edit_form.onCreated(function() {
 
 Template.ticket_list.onCreated(function() {
 	this.subscribe('tickets.list')
+	this.subscribe('tickets.list.private')
 })
 
 Template.ticket_page.onCreated(function() {

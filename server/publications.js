@@ -18,18 +18,34 @@ Meteor.publish('tickets.list', (/*skip, limit*/) => {
 	/*check(skip, Number)
 	check(limit, Number)*/
 	
-	/*let userCursor = Meteor.users.find({_id: { $in: arrayUniqueOwnerId}}, { fields : { username:1, score:1, rank: 1}})*/
-	let ticketCursor = Tickets.find({}, { fields : { content: 0}, sort : { createdAt: -1 }/*, skip: skip, limit: limit*/})
+	
+	
+	let ticketCursor = Tickets.find({private:false}, { fields : { content: 0}, sort : { createdAt: -1 }/*, skip: skip, limit: limit*/})
 	
 	// Récupération des id des auteurs des tickets
 	let arrayTicket = ticketCursor.fetch()
 	let arrayOwnerId = arrayTicket.map(ticket => ticket.ownerId) // pour chaque élément du tableau, renvoie l'ownerId dans un tableau > ["id1", "id2", "id2"]
 	let arrayUniqueOwnerId = Array.from(new Set(arrayOwnerId)) // ["id1", "id2"]
 	
+	let userCursor = Meteor.users.find({_id: { $in: arrayUniqueOwnerId}}, { fields : { username:1, score:1, rank: 1}})
+	
 	return [
 		ticketCursor,
-		Meteor.users.find({_id: { $in: arrayUniqueOwnerId}}, { fields : { username:1, score:1, rank: 1}})
+		userCursor
 	]
+})
+
+Meteor.publish('tickets.list.private', () => {
+	let user = Meteor.user()
+	let privateTicketCursor
+	
+	if(user.rank > 12) {
+		privateTicketCursor =  Tickets.find({private:true}, { fields : { content: 0}, sort : { createdAt: -1 }})
+		return privateTicketCursor
+	} else {
+		privateTicketCursor = Tickets.find({ownerId: user._id}, { fields : { content: 0}, sort : { createdAt: -1 }})
+		return privateTicketCursor
+	}
 })
 
 Meteor.publish('ticket.single', (ticketId) => {
@@ -60,7 +76,7 @@ Meteor.publish('ticket.single', (ticketId) => {
 Meteor.publish('contributions', () => {
 	
 	let contributionCursor = Corrections.find({ownerId: Meteor.userId()})
-	let ticketCursor = Tickets.find()
+	let ticketCursor = Tickets.find({private:false}, {})
 	
 	return [
 		ticketCursor,

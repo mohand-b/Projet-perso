@@ -20,7 +20,7 @@ Template.profil.events({
 Template.profil.onCreated(function() {
 	this.subscribe('profil', FlowRouter.getParam('userId'))
 	this.subscribe('tickets.list')
-	this.subscribe('contributions')
+	this.subscribe('tickets.list.private')
 })
 
 

@@ -85,7 +85,7 @@ ______________________________________________________*/
 .card-text-date {font-size: 0.8rem; color: rgba(0,0,0,0.5)}
 .card-text-author {font-size: 0.9rem}
 
-.ticket-closed {border: 1px solid red}
+.ticket-closed {border: 1px solid rgba(255,0,4,0.30)}
 
 /*______________________________________________________*/
 

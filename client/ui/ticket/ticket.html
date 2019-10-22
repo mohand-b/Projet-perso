@@ -15,13 +15,12 @@
 		<div class="card {{#if closedTicket ticket.open}}ticket-closed{{/if}}" >
 			<div class="card-body">
 				
-				
-				
 				<div class="headerCard d-flex justify-content-between">
 					<p class="card-text-author">{{getUserFullname  ticket.ownerId}}</p>
 					<div class="badgesTicket">
-						{{#if equals ticket.ownerId currentUser._id}}<img src="/img/medal.svg" data-toggle="tooltip" data-placement="top" title="Propriétaire de ce ticket">{{/if}}
+						{{#if equals ticket.ownerId currentUser._id}}<img src="/img/award.svg" data-toggle="tooltip" data-placement="top" title="Propriétaire de ce ticket">{{/if}}
 						{{#if closedTicket ticket.open}}<img src="/img/lock.svg" data-toggle="tooltip" data-placement="top" title="Ticket fermé">{{/if}}
+						{{#if ticket.private}}<img src="/img/invisible.svg" data-toggle="tooltip" data-placement="top" title="Ticket privé">{{/if}}
 					</div>
 					<p class="card-text-date">{{getDisplayDateTime ticket.createdAt}}</p>					
 				</div>
@@ -125,6 +124,7 @@
 						{{#if equals this.ownerId currentUser._id}}<img src="/img/award.svg" data-toggle="tooltip" data-placement="top" title="Propriétaire de ce ticket">{{/if}}
 						{{#if recentTicket this.createdAt}}<img src="/img/hourglass.svg" data-toggle="tooltip" data-placement="top" title="Ticket récemment créé">{{/if}}
 						{{#if closedTicket this.open}}<img src="/img/lock.svg" data-toggle="tooltip" data-placement="top" title="Ticket fermé">{{/if}}
+						{{#if this.private}}<img src="/img/invisible.svg" data-toggle="tooltip" data-placement="top" title="Ticket privé">{{/if}}
 					</div>
 			<div class="contributors  mx-auto">
 				<span class="small">{{> contributeurs}}</span>
