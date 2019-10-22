@@ -3,6 +3,15 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 import './ticket.html';
 
+Meteor.startup(function () {
+  Session.setDefault('mycheckbox', 0);
+});
+Tracker.autorun(function () {
+    var sessionmycheckbox = Session.get('mycheckbox');
+    console.log("tracker autorun : sessionmycheckbox : "+sessionmycheckbox);
+});
+
+
 // ----------- EVENTS
 
 // Évènements liés au template "ticket_proposition"
@@ -18,22 +27,34 @@ Template.ticket_create_form.events({
 	'submit .js-create-ticket'(event, instance) {
 		event.preventDefault();
 		
-		const title = event.target.title.value;
-		const content = event.target.content.value;
-		const private = event.target.private.checked;
+		const title = event.target.title.value
+		const content = event.target.content.value
+		const private = event.target.private.checked
 		
 		// Appel de la méthode créée pour la création d'un ticket
 		Meteor.call('insertTicket', {title: title, content: content, private: private},
 				   (err, res) => {
 			if(!err) {
-				event.target.title.value = '';
-				event.target.content.value = '';
+				event.target.title.value = ''
+				event.target.content.value = ''
+				event.target.private.checked = false
+				Session.set("mycheckbox", 0)
 			}
 		})
 	},
 	
+	'change #mycheckbox'(event, instance) {
+		
+    if (document.getElementById('mycheckbox').checked){
+      Session.set("mycheckbox", 1)
+    }else{
+      Session.set("mycheckbox", 0)
+    }
+  },
+	
 	'click .btn-cancel'(event, instance){
 		FlowRouter.go('/')
+		Session.set("mycheckbox", 0)
 	}
 });
 
@@ -149,5 +170,11 @@ Template.ticket_single.helpers({
 		diff.day = tmp;
      
     if(diff.day > -1) return true;
+	}
+})
+
+Template.ticket_create_form.helpers({
+	isChecked() {
+		if(Session.get('mycheckbox') == 1) return true
 	}
 })

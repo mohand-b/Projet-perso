@@ -92,7 +92,7 @@ ______________________________________________________*/
 .status-accepted {color: rgba(36,189,53,1.00)}
 .status-refused {color: red}
 
-.badgesTicket img {height: 15px; padding: 0 10px}
+.badgesTicket img, .itemBadge {height: 15px; padding: 0 10px}
 
 
  /*____                         _   _                 

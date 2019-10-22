@@ -63,13 +63,14 @@
 		<form class="create-ticket js-create-ticket">
 			
 			<input class="form-control" type="text" placeholder="Titre du contenu à corriger" name="title">
-			<textarea class="form-control mb-2" name="content" rows="10" placeholder="Texte à corriger"></textarea>
+			<textarea class="form-control" name="content" rows="10" placeholder="Texte à corriger"></textarea>
 			<div class="form-check">
-			<input class="mr-2" type="checkbox" id="defaultCheck1" name="private">
-			<label class="form-check-label text-muted" for="defaultCheck1">Rendre privé </label>
+			<input class="mr-2" type="checkbox" id="mycheckbox" name="private">
+			<label class="form-check-label text-muted" for="mycheckbox">Rendre privé </label>
+				{{#if isChecked}}<span class="small text-warning"><img src='/img/invisible.svg' class="itemBadge">Seuls les modérateurs pourront voir le ticket et proposer des corrections</span>{{/if}}
 			</div>
 			
-			<div class="my-1">
+			<div class="mt-2">
 				<button type="button" class="btn-cancel btn btn-outline-danger px-4 btn-style">Annuler</button>
 				<button type="submit" class="btn-create-ticket btn btn-success px-4 btn-style">Envoyer le ticket</button>
 			</div>
