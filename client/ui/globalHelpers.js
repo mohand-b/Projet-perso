@@ -13,6 +13,14 @@ Template.registerHelper('getUserFullname', function(userId) {
 	}
 })
 
+Template.registerHelper('getUserRank', function(userId) {
+	let user = Meteor.users.findOne({_id: userId})
+	
+	if(user) {
+		return user.rank
+	}
+})
+
 // RANKING HERE 
 Template.registerHelper('titleRank', function(rank) {
 	switch(rank) {

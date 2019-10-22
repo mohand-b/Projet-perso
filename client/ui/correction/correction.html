@@ -38,10 +38,11 @@
 <template name="correction_single">
 	<div class="card mb-3">
 		<div class="card-body post-item" data-id="{{_id}}">
+			<div class="d-flex justify-content-between">
 			<p class="{{#if statusAccepted this.status}}status-accepted{{/if}} 
 					  {{#if statusRefused this.status}}status-refused{{/if}}">{{this.status}}</p>
-			<h5 class="card-title">{{getUserFullname this.ownerId}}</h5>
-			
+			<p class=".card-text-author">par <a href="/profil/{{this.ownerId}}">{{getUserFullname this.ownerId}}</a> - <span class="small text-muted">{{titleRank (getUserRank this.ownerId)}}</span></p>
+			</div>
 			<!--<a data-toggle="collapse"  data-target="#contentCorrection{{this._id}}">Voir plus</a>-->
 			
 			<!--<div class="collapse" id="contentCorrection{{this._id}}">-->

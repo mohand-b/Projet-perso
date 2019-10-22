@@ -48,7 +48,6 @@ Meteor.methods({
               	$inc: {counterEdit: 1 }
            }
        )
-		console.log(ticket.id)
 	 },
 	
 	// Fermer un ticket > Modifie le status
