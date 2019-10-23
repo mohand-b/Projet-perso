@@ -26,6 +26,8 @@ Template.contributions.helpers({
 
 Template.contributions.onCreated(function() {
 	this.subscribe('contributions')
+	this.subscribe('tickets.list')
+	this.subscribe('tickets.list.private')
 })
 
 
@@ -43,8 +45,12 @@ Template.contribution_single.helpers({
 		return correctionStatus === "Refusée"
 	},
 	attachedTicket(correctionId) {
-		let ticketId = Corrections.findOne({_id: correctionId}).ticketId
-		return Tickets.findOne({_id:ticketId}).title
+		
+		let ticketId = Corrections.find({_id: correctionId}).fetch()[0].ticketId
+		let ticket = Tickets.findOne({_id:ticketId})
+		let titleTicket = ticket.title
+		
+		return titleTicket
 	}
 	
 })

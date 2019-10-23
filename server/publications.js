@@ -18,8 +18,6 @@ Meteor.publish('tickets.list', (/*skip, limit*/) => {
 	/*check(skip, Number)
 	check(limit, Number)*/
 	
-	
-	
 	let ticketCursor = Tickets.find({private:false}, { fields : { content: 0}, sort : { createdAt: -1 }/*, skip: skip, limit: limit*/})
 	
 	// Récupération des id des auteurs des tickets
@@ -76,10 +74,8 @@ Meteor.publish('ticket.single', (ticketId) => {
 Meteor.publish('contributions', () => {
 	
 	let contributionCursor = Corrections.find({ownerId: Meteor.userId()})
-	let ticketCursor = Tickets.find({private:false}, {})
 	
 	return [
-		ticketCursor,
 		contributionCursor
 	]
 }) // Contributions de l'utilisateur 

@@ -21,6 +21,7 @@ Template.profil.onCreated(function() {
 	this.subscribe('profil', FlowRouter.getParam('userId'))
 	this.subscribe('tickets.list')
 	this.subscribe('tickets.list.private')
+	this.subscribe('contributeurs')
 })
 
 

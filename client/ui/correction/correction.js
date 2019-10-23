@@ -94,8 +94,11 @@ Template.correction_single.helpers({
   },
 
   whoCanAppreciate() {
-    if(Meteor.userId() === Tickets.findOne({ _id: FlowRouter.getParam('ticketId') }).ownerId) return true
-	else if (Meteor.users.find({_id:Meteor.userId()}).fetch()[0].rank === 13) return true
+	 let user = Meteor.user()
+	 let ticket = Tickets.findOne({ _id: FlowRouter.getParam('ticketId')})
+	 
+    if(user._id === ticket.ownerId || user.rank === 13) return true
+	  
 	else return false
   },
 
