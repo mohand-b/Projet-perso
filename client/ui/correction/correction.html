@@ -18,6 +18,17 @@
 <!-- LISTE CORRECTIONS -->
 <template name="correction_accepted_list">
 	
+	{{#if correctionsAcceptedTrue}}
+	<div class="hidden-pretty-transform d-flex">
+		<label class="switch">
+			<input type="checkbox" id="hiddenPrettyTransform">
+			<span class="slider round"></span>
+		</label>
+		<span class="small text-muted font-weight-bold text-hidden-pretty-transform">Masquer les caractères transformés</span>
+	</div>	
+	{{/if}}
+	
+	
 	{{#if whoCanAppreciate}}
 	
 		{{#each correction in corrections}}
@@ -25,7 +36,7 @@
 		{{/each}}
 	
 	{{else}}
-	
+
 		{{#each correction in correctionsAccepted}}
 			{{> correction_single correction}}
 		{{/each}}
@@ -43,11 +54,12 @@
 					  {{#if statusRefused this.status}}status-refused{{/if}}">{{this.status}}</p>
 			<p class=".card-text-author">par <a href="/profil/{{this.ownerId}}">{{getUserFullname this.ownerId}}</a> - <span class="small text-muted">{{titleRank (getUserRank this.ownerId)}}</span></p>
 			</div>
-			<!--<a data-toggle="collapse"  data-target="#contentCorrection{{this._id}}">Voir plus</a>-->
-			
-			<!--<div class="collapse" id="contentCorrection{{this._id}}">-->
+			{{#if isChecked}}
+				<p class="card-text">{{this.content}}</p>
+			{{else}}
 				<p class="card-text">{{transformContentCorrection this.content}}</p>
-			<!--</div>-->
+			{{/if}}
+			
 			
 			{{#if statusPending this.status}}{{#if whoCanAppreciate}}
 			

@@ -30,6 +30,12 @@ Template.contributions.onCreated(function() {
 	this.subscribe('tickets.list.private')
 })
 
+Template.contribution_single.onCreated(function() {
+	this.subscribe('contributions')
+	this.subscribe('tickets.list')
+	this.subscribe('tickets.list.private')
+})
+
 
 // ----------- HELPERS
 

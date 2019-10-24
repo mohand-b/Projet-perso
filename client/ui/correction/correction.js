@@ -2,6 +2,9 @@ import './correction.html'
 import { Corrections, Tickets } from '../../../both'
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra'
 
+Meteor.startup(function () {
+  Session.setDefault('hiddenPrettyTransform', 0);
+})
 
 // ----------- EVENTS
 
@@ -39,6 +42,14 @@ Template.correction_single.events({
   }
 })
 
+Template.correction_accepted_list.events({
+	'change #hiddenPrettyTransform'(event, instance) {
+		
+   document.getElementById('hiddenPrettyTransform').checked ? Session.set("hiddenPrettyTransform", 1) : Session.set("hiddenPrettyTransform", 0)
+    
+  },
+})
+
 
 // ----------- SUBSCRIBE
 
@@ -46,30 +57,36 @@ Template.correction_form.onCreated(function () {
   this.subscribe('ticket.single', FlowRouter.getParam('ticketId'))
 })
 
-
+Template.correction_accepted_list.onCreated(function() {
+	Session.set("hiddenPrettyTransform", 0)
+	this.subscribe('ticket.single', FlowRouter.getParam('ticketId'))
+})
 
 // ----------- HELPERS
 
 Template.correction_accepted_list.helpers({
 
   // Liste des commentaires liés au ticket
-  corrections() {
+ 	corrections() {
     return Corrections.find({ ticketId: FlowRouter.getParam('ticketId') })
     console.log()
   },
 
-  correctionsAccepted() {
+ 	correctionsAccepted() {
     return Corrections.find({ ticketId: FlowRouter.getParam('ticketId'), status: "Acceptée" })
   },
+	
+	correctionsAcceptedTrue() {
+		return Corrections.find().fetch().length > 0
+	},
 
-  whoCanAppreciate() {
+ 	whoCanAppreciate() {
 	 let user = Meteor.user()
 	 let ticket = Tickets.findOne({ _id: FlowRouter.getParam('ticketId')})
 	 
     if(user._id == ticket.ownerId || user.rank == 13) return true
-	else return false
-					  
-  }
+	else return false			  
+  },
 
 })
 
@@ -111,7 +128,12 @@ Template.correction_single.helpers({
     let prettyCorrection = diff_match_patch.prototype.diff_prettyHtml(diffs)
 
     return new Handlebars.SafeString(prettyCorrection)
-  }
+  },
+	
+		
+	isChecked() {
+		if(Session.get('hiddenPrettyTransform') == 1) return true
+	}
 })
 
 
