@@ -69,7 +69,6 @@ Template.correction_accepted_list.helpers({
   // Liste des commentaires liés au ticket
  	corrections() {
     return Corrections.find({ ticketId: FlowRouter.getParam('ticketId') })
-    console.log()
   },
 
  	correctionsAccepted() {
