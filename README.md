@@ -1,4 +1,4 @@
 __Correcteur collaboratif - Projet pour certification__
 
-[correcteur.mohandboudjema.net](http//www.correcteur.mohandboudjema.net)
+[http://52.47.162.25/]5http://52.47.162.25/)
 
